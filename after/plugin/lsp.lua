@@ -9,9 +9,11 @@ end)
 lsp.ensure_installed({
 	'tsserver',
 	'eslint',
-    'vimdoc',
+    'jdtls',
 --	'rust_analyzer',
 })
+
+lsp.skip_server_setup({'jdtls'})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

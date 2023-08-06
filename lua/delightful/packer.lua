@@ -44,4 +44,6 @@ return require('packer').startup(function(use)
     }
 
     use { 'milkypostman/vim-togglelist' }
+
+    use { 'mfussenegger/nvim-jdtls' }
 end)
