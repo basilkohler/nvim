@@ -1,7 +1,11 @@
 vim.g.mapleader = " "
 
-function Map(mode, from, to, opts)
-    vim.keymap.set(mode, from, to, opts)
+function Map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
 end
 
 -- open file explorer
@@ -49,7 +53,8 @@ Map("n", "<leader>bf", vim.lsp.buf.format)
 -- Quickfix list
 Map("n", "<leader>q", function()
     ToggleQuickfixList() -- from plugin milkypostman/vim-togglelist
-end)
+end) 
+
 Map("n", "<C-k>", "<cmd>cnext<CR>zz")
 Map("n", "<C-j>", "<cmd>cprev<CR>zz")
 Map("n", "<leader>k", "<cmd>lnext<CR>zz")
@@ -57,3 +62,6 @@ Map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- substitute current word
 Map("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- go back
+Map("n", "gb", "<C-o>")
